@@ -9,6 +9,17 @@ from src.analytics import make_report
 from src.sample_data import make_sample_data
 
 app = FastAPI(title="Sales & Revenue Analytics API", version="1.0.0")
+# Root endpoint: displays API information
+@app.get("/")
+def root():
+    return {
+        "message": "Sales and Revenue Analysis API",
+        "status": "running",
+        "version": "1.0.0",
+        "documentation": "/docs",
+        "health_check": "/health",
+        "analytics_demo": "/analytics/demo"
+    }
 # Local React dev server origins. Replace with the exact deployed frontend origin in production.
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173","http://127.0.0.1:5173"],
                    allow_credentials=True, allow_methods=["GET","POST"], allow_headers=["*"])
